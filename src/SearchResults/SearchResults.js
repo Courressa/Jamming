@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { Tracklist } from '../Tracklist/Tracklist';
 import { Track } from "../Track/Track";
+import {Playlist} from "../Playlist/Playlist";
 
 const testSong = [
     {
@@ -19,24 +20,49 @@ const testSong = [
 
 function SearchResults() {
     const [results, setResults] = useState([]);
-    const [songName, setSongName] = useState("");
-    const [artist, setArtist] = useState("");
-    const [album , setAlbum ] = useState("");
+    const [songName, setSongName] = useState("Select Arrow For More Info");
+    const [artist, setArtist] = useState("Select Arrow For More Info");
+    const [album , setAlbum ] = useState("Select Arrow For More Info");
 
-    const handleClick = (event) => {
+    const handleMoreInfoClick = (event) => {
         let trackID = event.target.value;
         
-        testSong.map((item, i) => {
+        testSong.map((item) => {
             if (trackID == item.id) {
                 setSongName(item.name);
                 setArtist(item.artist);
                 setAlbum(item.album);
-                console.log(item.artist);
             }
         });
         
         
     };
+
+    const [saveSong, setSaveSong] = useState("");
+    
+    const handlePlusClick = (event) => {
+        let songID = event.target.value;
+
+        testSong.map((item) => {
+            if (songID == item.id) {
+                setSaveSong(prev => {
+                    if (prev.includes(item)) {
+                        return prev.filter(x => x !== item);
+                    } else {
+                        return [item, ...prev];
+                    }
+                });
+            }
+        });
+        
+        
+        
+    };
+
+    let createList;
+    if (saveSong) {
+        createList = saveSong.map((selected) => (<Playlist key={selected.id} listObject={selected}/>))
+    }
 
     return (
         <div>
@@ -49,9 +75,13 @@ function SearchResults() {
                         index={index}
                     >
                     <button
-                        onClick={handleClick}
+                        onClick={handleMoreInfoClick}
                         value={song.id}
                     >More Info</button> 
+                    <button
+                        onClick={handlePlusClick}
+                        value={song.id}
+                    >Plus/Minus</button>
                     </Tracklist>
                 ))}
             </section>
@@ -61,6 +91,12 @@ function SearchResults() {
                     songArtist={artist}
                     songAlbum={album}
                 />
+            </section>
+            <section>
+                <ul>
+                    {createList}
+                    <button>Save To Spotify</button>
+                </ul>
             </section>
         </div>
     );
