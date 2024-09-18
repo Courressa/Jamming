@@ -1,0 +1,21 @@
+.songSections {
+    display: grid;
+    grid-template: 
+        "search search more more" 1fr
+        ". playlist playlist ." 1fr/ 1fr 1fr;
+    justify-content: center;
+    gap: 2rem;
+    margin: 4rem 6rem;
+}
+
+.searchList {
+    grid-area: search;
+}
+
+.moreInfo {
+    grid-area: more;
+}
+
+.AddedSongs {
+    grid-area: playlist;
+}

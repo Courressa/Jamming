@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { Tracklist } from '../Tracklist/Tracklist';
 import { Track } from "../Track/Track";
 import {Playlist} from "../Playlist/Playlist";
+import styles from "./SearchResults.module.css";
 
 const testSong = [
     {
@@ -65,8 +66,8 @@ function SearchResults() {
     }
 
     return (
-        <div>
-            <section>
+        <div className={styles.songSections}>
+            <section className={styles.searchList}>
                 {testSong.map((song, index) => (
                     <Tracklist
                         key={song.id}
@@ -85,14 +86,14 @@ function SearchResults() {
                     </Tracklist>
                 ))}
             </section>
-            <section>
+            <section className={styles.moreInfo}>
                 <Track 
                     name={songName}
                     songArtist={artist}
                     songAlbum={album}
                 />
             </section>
-            <section>
+            <section className={styles.AddedSongs}>
                 <ul>
                     {createList}
                     <button>Save To Spotify</button>
