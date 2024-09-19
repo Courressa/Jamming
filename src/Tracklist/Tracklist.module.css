@@ -1,3 +1,6 @@
-.div {
-    background-color: blueviolet;
+.eachSong {
+    background-color: rgb(127, 28, 219);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
 }

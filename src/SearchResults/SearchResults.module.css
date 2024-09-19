@@ -2,20 +2,35 @@
     display: grid;
     grid-template: 
         "search search more more" 1fr
-        ". playlist playlist ." 1fr/ 1fr 1fr;
+        ". playlist playlist ." 1fr/ 1fr 1fr 1fr 1fr;
     justify-content: center;
     gap: 2rem;
     margin: 4rem 6rem;
+    box-shadow: 1rem 1rem 3rem;
+    padding: 5rem;
+    border-radius: 1rem;
 }
 
 .searchList {
     grid-area: search;
+    background-color: rgba(0, 3, 156, 0.5);
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0.6rem 0.6rem 1rem;
 }
 
 .moreInfo {
     grid-area: more;
+    background-color: rgba(0, 3, 156, 0.5);
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0.6rem 0.6rem 1rem;
 }
 
 .AddedSongs {
     grid-area: playlist;
+    background-color: rgba(0, 3, 156, 0.5);
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0.6rem 0.6rem 1rem;
 }

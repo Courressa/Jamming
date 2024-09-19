@@ -1,16 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   font-size: 16px;
 }
 
-.App {
+body {
   text-align: center;
+  background-image: url("../Images/bkg2-music.jpg");
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .App-header {
-  background-color: #282c34;
+  font-family: "Lobster", sans-serif;
+  font-size: 2rem;
+  background-image: linear-gradient(to bottom right, rgb(0, 2, 99), rgba(2, 155, 28, 0.5), rgb(36, 0, 66) );
   min-height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: rgb(238, 238, 238);
+  padding-bottom: 1rem;
+  text-shadow: 0.5rem 0.5rem 0.3rem black;
 }
