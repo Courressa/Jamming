@@ -17,6 +17,12 @@ const testSong = [
       artist: "Symphony",
       album: "Aim",
     },
+    {
+        id: 3,
+        name: "asdasd",
+        artist: "sadasd",
+        album: "asd",
+      },
 ];
 
 function SearchResults() {
@@ -25,8 +31,8 @@ function SearchResults() {
     const [artist, setArtist] = useState("Select Arrow For More Info");
     const [album , setAlbum ] = useState("Select Arrow For More Info");
 
-    const handleMoreInfoClick = (event) => {
-        let trackID = event.target.value;
+    const handleMoreInfoClick = (moreInfoID) => {
+        let trackID = moreInfoID;
         
         testSong.map((item) => {
             if (trackID == item.id) {
@@ -40,9 +46,9 @@ function SearchResults() {
     };
 
     const [saveSong, setSaveSong] = useState("");
-    
-    const handlePlusClick = (event) => {
-        let songID = event.target.value;
+   
+    const handlePlusClick = (plusMinusID) => {
+        let songID = plusMinusID;
 
         testSong.map((item) => {
             if (songID == item.id) {
@@ -55,16 +61,27 @@ function SearchResults() {
                 });
             }
         });
-        
-        
+    };
+
+    const [pushChange, setPushChange] = useState([]);
+    const [pushID, setPushID] = useState();
+    const changeToPlus = (change, collectedID) => {
+        setPushChange(change);
+        setPushID(collectedID);
         
     };
 
     let createList;
     if (saveSong) {
-        createList = saveSong.map((selected) => (<Playlist key={selected.id} listObject={selected}/>))
+        createList = saveSong.map((selected) => (
+        <Playlist
+            key={selected.id}
+            listObject={selected}
+            remove={handlePlusClick}
+            collectRemoval={changeToPlus}
+        />))
     }
-
+    console.log(pushChange);
     return (
         <div className={styles.songSections}>
             <section className={styles.searchList}>
@@ -74,15 +91,11 @@ function SearchResults() {
                         value={song.name}
                         songObject={song}
                         index={index}
+                        addMinus={handlePlusClick}
+                        info={handleMoreInfoClick}
+                        collectChange={pushChange}
+                        collectID={pushID}
                     >
-                    <button
-                        onClick={handleMoreInfoClick}
-                        value={song.id}
-                    >More Info</button> 
-                    <button
-                        onClick={handlePlusClick}
-                        value={song.id}
-                    >Plus/Minus</button>
                     </Tracklist>
                 ))}
             </section>
