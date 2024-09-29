@@ -1,8 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Tracklist } from '../Tracklist/Tracklist';
 import { Track } from "../Track/Track";
-import {Playlist} from "../Playlist/Playlist";
+import { Playlist } from "../Playlist/Playlist";
+import { SearchBar } from "../SearchBar/SearchBar";
+import { PlaylistTitle } from "../Playlist/PlaylistTitle";
 import styles from "./SearchResults.module.css";
+
 
 const testSong = [
     {
@@ -28,8 +31,8 @@ const testSong = [
 function SearchResults() {
     const [results, setResults] = useState([]);
     const [songName, setSongName] = useState("Select Arrow For More Info");
-    const [artist, setArtist] = useState("Select Arrow For More Info");
-    const [album , setAlbum ] = useState("Select Arrow For More Info");
+    const [artist, setArtist] = useState("");
+    const [album , setAlbum ] = useState("");
 
     const handleMoreInfoClick = (moreInfoID) => {
         let trackID = moreInfoID;
@@ -62,11 +65,8 @@ function SearchResults() {
             }
         });
     };
-
-    const [pushChange, setPushChange] = useState([]);
     const [pushID, setPushID] = useState();
-    const changeToPlus = (change, collectedID) => {
-        setPushChange(change);
+    const changeToPlus = (collectedID) => {
         setPushID(collectedID);
         
     };
@@ -81,37 +81,53 @@ function SearchResults() {
             collectRemoval={changeToPlus}
         />))
     }
-    console.log(pushChange);
+
+    let playlistURI = [];
+
+    const handlePlaylistClick = () => {
+        saveSong.map(song => (
+            playlistURI.push(`spotify:track:${song.id}`)
+        ));
+        
+        console.log(playlistURI);
+        setSaveSong("");
+    };
+
     return (
-        <div className={styles.songSections}>
-            <section className={styles.searchList}>
-                {testSong.map((song, index) => (
-                    <Tracklist
-                        key={song.id}
-                        value={song.name}
-                        songObject={song}
-                        index={index}
-                        addMinus={handlePlusClick}
-                        info={handleMoreInfoClick}
-                        collectChange={pushChange}
-                        collectID={pushID}
-                    >
-                    </Tracklist>
-                ))}
+        <div>
+            <section className={styles.searchBar}>
+                <SearchBar />
             </section>
-            <section className={styles.moreInfo}>
-                <Track 
-                    name={songName}
-                    songArtist={artist}
-                    songAlbum={album}
-                />
-            </section>
-            <section className={styles.AddedSongs}>
-                <ul>
+            <div className={styles.songSections}>
+                <section className={styles.searchList}>
+                    {testSong.map((song, index) => (
+                        <Tracklist
+                            key={song.id}
+                            value={song.name}
+                            songObject={song}
+                            index={index}
+                            addMinus={handlePlusClick}
+                            info={handleMoreInfoClick}
+                            collectID={pushID}
+                        >
+                        </Tracklist>
+                    ))}
+                </section>
+                <section className={styles.moreInfo}>
+                    <Track 
+                        name={songName}
+                        songArtist={artist}
+                        songAlbum={album}
+                    />
+                </section>
+                <section className={styles.AddedSongs}>
+                    <PlaylistTitle />
                     {createList}
-                    <button>Save To Spotify</button>
-                </ul>
-            </section>
+                    <button
+                        onClick={handlePlaylistClick}
+                    >Save To Spotify</button>
+                </section>
+            </div>
         </div>
     );
 };

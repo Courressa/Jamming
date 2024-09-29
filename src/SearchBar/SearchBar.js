@@ -1,9 +1,23 @@
 import React from "react";
+import styles from "./SearchBar.module.css";
+import "../Song&Icon Styles/ButtonIcons.css";
 
 function SearchBar() {
     return (
     <div>
-        <button>Search</button>
+        <form>
+            <input
+                className={`${styles.searchSection} ${styles.bar}`}
+                type="text"
+                aria-label="Search"
+                placeholder="Search..."
+            />
+            <input
+                className={`${styles.searchSection} ${styles.button} material-symbols-outlined`}
+                type="submit"
+                value="Search"
+            />
+        </form>
     </div>);
 };
 

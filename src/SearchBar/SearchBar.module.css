@@ -1,0 +1,22 @@
+form {
+    display: flex;
+    justify-content: center;
+}
+
+.searchSection {
+    padding: 1rem;
+    
+}
+
+.bar {
+    width: 25rem;
+    margin-top: 0;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.button {
+    width: 5rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}

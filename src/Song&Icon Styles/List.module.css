@@ -1,0 +1,18 @@
+.eachSong {
+    background-color: rgba(127, 28, 219, 0.678);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+}
+
+.playlistName {
+    margin-bottom: 3rem;
+    height: 3rem;
+    background-color: rgba(255, 255, 255, 0);
+    color: wheat;
+    border-radius: 1rem;
+}
+
+.playlistName::placeholder {
+    color: #EFEFEF;
+}

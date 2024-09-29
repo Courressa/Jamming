@@ -1,26 +1,17 @@
 import React, {useState, useEffect} from "react";
-import { Playlist } from "../Playlist/Playlist";
-import styles from "./Tracklist.module.css";
+import styles from "../Song&Icon Styles/List.module.css";
+import "../Song&Icon Styles/ButtonIcons.css";
 
 
 
 function Tracklist(props) {
-  const [minusPlus, setMinusPlus] = useState("Plus");
+  const [minusPlus, setMinusPlus] = useState("add");
   const songlist = [props.songObject]
-
-  /*if (props.collectID) {
-    for (const prop in props.songObject) {
-      if (props.collectID === props.songObject[prop]) {
-        console.log(song.id);
-        setMinusPlus("Plus");
-      }
-  }*/
 
   useEffect(() => {
     songlist.map((song) => {
       if (song.id == props.collectID) {
-        console.log(props.collectID + 'something' + props.songObject.id);
-        setMinusPlus("Plus");
+        setMinusPlus("add");
       }
     }, [props.collectID])
     
@@ -30,10 +21,10 @@ function Tracklist(props) {
   const handleToggle = (event) => {
     props.addMinus(event.target.value);
 
-    if (minusPlus === "Plus") {
-      setMinusPlus("Minus");
-  } else if (minusPlus === "Minus") {
-      setMinusPlus("Plus");
+    if (minusPlus === ("add")) {
+      setMinusPlus("remove");
+  } else if (minusPlus === ("remove")) {
+      setMinusPlus("add");
   }
   };
 
@@ -43,21 +34,26 @@ function Tracklist(props) {
 
   return (
     <div className={styles.eachSong}>
-      <h2>{props.songObject.name}</h2>
-      <h3>{props.songObject.artist}</h3>
-      <button
-        onClick={handleToggle}
-        value={props.songObject.id}
-      >
-        {minusPlus}
-      </button>
-      <button
-        onClick={handleInfo}
-        value={props.songObject.id}
-      >
-        More Info
-      </button>
-      {props.children}
+      <section>
+        <h2>{props.songObject.name}</h2>
+        <h3>{props.songObject.artist}</h3>
+      </section>
+      <section>
+        <button
+          className="material-symbols-outlined"
+          onClick={handleToggle}
+          value={props.songObject.id}
+        >
+          {minusPlus}
+        </button>
+        <button
+          className="material-symbols-outlined"
+          onClick={handleInfo}
+          value={props.songObject.id}
+        >
+          arrow_right
+        </button>
+      </section>
     </div>
   );
 };
