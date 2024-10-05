@@ -32,11 +32,18 @@ function Tracklist(props) {
     props.info(event.target.value);
   };
 
+  const displaysArtists = (
+    props.songObject.artists.map((person, index) => (
+      (index ? ', ' : '') + person.name
+    ))
+  );
+  
+
   return (
     <div className={styles.eachSong}>
       <section>
         <h2>{props.songObject.name}</h2>
-        <h3>{props.songObject.artist}</h3>
+        <h3>{displaysArtists}</h3>
       </section>
       <section>
         <button

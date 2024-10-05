@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Tracklist } from '../Tracklist/Tracklist';
 import { Track } from "../Track/Track";
 import { Playlist } from "../Playlist/Playlist";
@@ -11,19 +11,19 @@ const testSong = [
     {
       id: 1,
       name: "Something Good!",
-      artist: "Nyx",
+      artists: "Nyx",
       album: "Reach For The Stars",
     },
     {
       id: 2,
       name: "Leave Your Mark",
-      artist: "Symphony",
+      artists: "Symphony",
       album: "Aim",
     },
     {
         id: 3,
         name: "asdasd",
-        artist: "sadasd",
+        artists: "sadasd",
         album: "asd",
       },
 ];
@@ -37,13 +37,19 @@ function SearchResults(props) {
     const sendUserSearch = (collectedSearch) => {
         props.collectSearch(collectedSearch);
     }
+
+    useEffect(() => {
+        setResults(props.sendSearch);
+    }, [props.sendSearch])
+    console.log(results);
+
     const handleMoreInfoClick = (moreInfoID) => {
         let trackID = moreInfoID;
         
         testSong.map((item) => {
             if (trackID == item.id) {
                 setSongName(item.name);
-                setArtist(item.artist);
+                setArtist(item.artists);
                 setAlbum(item.album);
             }
         });
@@ -104,7 +110,7 @@ function SearchResults(props) {
             </section>
             <div className={styles.songSections}>
                 <section className={styles.searchList}>
-                    {testSong.map((song, index) => (
+                    {results.map((song, index) => (
                         <Tracklist
                             key={song.id}
                             value={song.name}

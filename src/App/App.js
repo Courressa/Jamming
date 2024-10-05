@@ -85,6 +85,7 @@ function App() {
       if (response.ok) {
         const jsonResponse = await response.json();
         const tracks = jsonResponse.tracks.items;
+        console.log(tracks);
         setSpotifySearchResults(tracks);
         
         return tracks;
