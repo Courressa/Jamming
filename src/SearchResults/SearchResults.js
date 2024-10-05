@@ -28,11 +28,15 @@ const testSong = [
       },
 ];
 
-function SearchResults() {
+function SearchResults(props) {
     const [results, setResults] = useState([]);
     const [songName, setSongName] = useState("Select Arrow For More Info");
     const [artist, setArtist] = useState("");
     const [album , setAlbum ] = useState("");
+
+    const sendUserSearch = (collectedSearch) => {
+        props.collectSearch(collectedSearch);
+    }
 
     const handleMoreInfoClick = (moreInfoID) => {
         let trackID = moreInfoID;
@@ -68,7 +72,6 @@ function SearchResults() {
     const [pushID, setPushID] = useState();
     const changeToPlus = (collectedID) => {
         setPushID(collectedID);
-        
     };
 
     let createList;
@@ -96,7 +99,9 @@ function SearchResults() {
     return (
         <div>
             <section className={styles.searchBar}>
-                <SearchBar />
+                <SearchBar 
+                    collectSearch={sendUserSearch}
+                />
             </section>
             <div className={styles.songSections}>
                 <section className={styles.searchList}>

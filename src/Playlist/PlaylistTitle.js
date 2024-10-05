@@ -11,7 +11,7 @@ function PlaylistTitle() {
         <div>
             <form>
                 <input 
-                    name="Playlist Title"
+                    name="PlaylistTitle"
                     value={title}
                     onChange={handleTitleChange}
                     className={styles.playlistName}
