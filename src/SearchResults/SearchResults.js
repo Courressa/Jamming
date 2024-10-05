@@ -37,7 +37,6 @@ function SearchResults(props) {
     const sendUserSearch = (collectedSearch) => {
         props.collectSearch(collectedSearch);
     }
-
     const handleMoreInfoClick = (moreInfoID) => {
         let trackID = moreInfoID;
         

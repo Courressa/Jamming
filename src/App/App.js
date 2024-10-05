@@ -20,7 +20,6 @@ function App() {
   const getAccessToken = async () => {
     try {
       if (!accessToken) {
-        console.log(accessToken);
         alert (
           'Jammming sends your created playlist to Spotify. Login to your spotify account to provide access.'
         );
@@ -29,7 +28,6 @@ function App() {
         setTimeout(() => {
           document.location = appBaseURL;
         }, timeOut );
-        console.log(timeOut);
       }
       
       async function redirectToAuthCodeFlow(clientId) {
@@ -69,6 +67,7 @@ function App() {
 
   //Send Search Results to Spotify
   const [userSearchResults, setuserSearchResults] = useState("");
+  const [spotifySearchResults, setSpotifySearchResults] = useState([]);
   const collectUserSearch = (collectedResults) => {
     setuserSearchResults(collectedResults);
   }
@@ -85,7 +84,10 @@ function App() {
 
       if (response.ok) {
         const jsonResponse = await response.json();
-        console.log(jsonResponse);
+        const tracks = jsonResponse.tracks.items;
+        setSpotifySearchResults(tracks);
+        
+        return tracks;
       }
     } catch (error) {
       console.log(error);
@@ -94,9 +96,8 @@ function App() {
 
   useEffect(() => {
     getSearch();
+    
   }, [userSearchResults])
-  
-  
   
   
   return (
@@ -107,6 +108,7 @@ function App() {
       <main>
         <SearchResults
           collectSearch={collectUserSearch}
+          sendSearch={spotifySearchResults}
         />
       </main>
     </div>
