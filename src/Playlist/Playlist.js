@@ -10,11 +10,17 @@ function Playlist(props) {
         
     };
 
+    const displaysArtists = (
+        props.listObject.artists.map((person, index) => (
+          (index ? ', ' : '') + person.name
+        ))
+      );
+
     return (
         <div className={styles.eachSong}>
             <section>
                 <h2>{props.listObject.name}</h2>
-                <h3>{props.listObject.artist}</h3>
+                <h3>{displaysArtists}</h3>
             </section>
             <section>
                 <button

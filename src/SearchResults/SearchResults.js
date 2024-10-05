@@ -46,11 +46,19 @@ function SearchResults(props) {
     const handleMoreInfoClick = (moreInfoID) => {
         let trackID = moreInfoID;
         
-        testSong.map((item) => {
+        results.map((item) => {
+            const displaysArtists = (
+                item.artists.map((person, index) => (
+                  (index ? ', ' : '') + person.name
+                ))
+            );
+
+            
+
             if (trackID == item.id) {
                 setSongName(item.name);
-                setArtist(item.artists);
-                setAlbum(item.album);
+                setArtist(displaysArtists);
+                setAlbum(item.album.name);
             }
         });
         
@@ -62,7 +70,7 @@ function SearchResults(props) {
     const handlePlusClick = (plusMinusID) => {
         let songID = plusMinusID;
 
-        testSong.map((item) => {
+        results.map((item) => {
             if (songID == item.id) {
                 setSaveSong(prev => {
                     if (prev.includes(item)) {
