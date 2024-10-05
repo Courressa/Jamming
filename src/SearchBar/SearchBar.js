@@ -7,6 +7,7 @@ function SearchBar() {
     <div>
         <form>
             <input
+                name="Search"
                 className={`${styles.searchSection} ${styles.bar}`}
                 type="text"
                 aria-label="Search"
