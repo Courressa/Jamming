@@ -61,8 +61,27 @@ h2, h3 {
 
 .AddedSongs {
     grid-area: playlist;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+    
 }
 
 .searchBar {
     margin: 5rem 0;
+}
+
+.spotifyButtons button {
+    background-color: rgb(14, 160, 14);
+    color: #EFEFEF;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-top: 4rem;
+    letter-spacing: 0.1rem;
+    height: 3.3rem;
+    width: 11rem;
 }

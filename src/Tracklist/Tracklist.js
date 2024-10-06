@@ -45,7 +45,7 @@ function Tracklist(props) {
         <h2>{props.songObject.name}</h2>
         <h3>{displaysArtists}</h3>
       </section>
-      <section>
+      <section className="addMinus">
         <button
           className="material-symbols-outlined"
           onClick={handleToggle}

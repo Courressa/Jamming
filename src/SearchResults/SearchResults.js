@@ -146,7 +146,7 @@ function SearchResults(props) {
                         </Tracklist>
                     ))}
                 </section>
-                <section className={`${styles.moreInfo} ${styles.dividedArea}`}>
+                <section className={`${styles.moreInfo} ${styles.dividedArea} ${styles.spotifyButtons}`}>
                     <Track 
                         name={songName}
                         songArtist={artist}
@@ -156,7 +156,7 @@ function SearchResults(props) {
                         songOnSpitfyLink={songLink}
                     />
                 </section>
-                <section className={`${styles.AddedSongs} ${styles.dividedArea}`}>
+                <section className={`${styles.AddedSongs} ${styles.dividedArea} ${styles.spotifyButtons}`}>
                     <PlaylistTitle />
                     {createList}
                     <button

@@ -7,10 +7,12 @@
 
 .playlistName {
     margin-bottom: 3rem;
+    padding: 0 1rem;
     height: 3rem;
     background-color: rgba(255, 255, 255, 0);
-    color: wheat;
+    color: #EFEFEF;
     border-radius: 1rem;
+    width: 20rem;
 }
 
 .playlistName::placeholder {
