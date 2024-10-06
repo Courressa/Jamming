@@ -71,6 +71,7 @@ function App() {
   const collectUserSearch = (collectedResults) => {
     setuserSearchResults(collectedResults);
   }
+  console.log(userSearchResults);
 
   const getSearch = async () => {
     const searchRequestEndpoint = "/v1/search";

@@ -45,7 +45,6 @@ function SearchResults(props) {
     useEffect(() => {
         setResults(props.sendSearch);
     }, [props.sendSearch])
-    console.log(results);
 
     //Displays more info for selected track
     const handleMoreInfoClick = (moreInfoID) => {
@@ -96,7 +95,7 @@ function SearchResults(props) {
             }
         });
     };
-    const [pushID, setPushID] = useState();
+    const [pushID, setPushID] = useState("");
     const changeToPlus = (collectedID) => {
         setPushID(collectedID);
     };
@@ -114,15 +113,23 @@ function SearchResults(props) {
 
     //creat playlist to send to Spotify
     let playlistURI = [];
+    let changePlusAfterSpotifyClick = [];
 
     const handlePlaylistClick = () => {
         saveSong.map(song => (
+            changePlusAfterSpotifyClick.push(song.id),
             playlistURI.push(`spotify:track:${song.id}`)
         ));
-        
+        /*for (let i = 0; i < changePlusAfterSpotifyClick.length; i++) {
+            setPushID(changePlusAfterSpotifyClick[i]);
+            console.log('the click is',changePlusAfterSpotifyClick[i]);
+            
+        }*/
+        setPushID(changePlusAfterSpotifyClick);
         console.log(playlistURI);
         setSaveSong("");
     };
+    
 
     return (
         <div>

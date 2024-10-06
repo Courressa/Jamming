@@ -13,6 +13,14 @@ function Tracklist(props) {
       if (song.id == props.collectID) {
         setMinusPlus("add");
       }
+
+      for (let i = 0; i < props.collectID.length; i++) {
+        if (song.id == props.collectID[i]) {
+          setMinusPlus("add");
+        };
+  
+      }
+
     }, [props.collectID])
     
 
