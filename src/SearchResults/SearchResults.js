@@ -111,25 +111,36 @@ function SearchResults(props) {
         />))
     }
 
+    
+
     //creat playlist to send to Spotify
     let playlistURI = [];
     let changePlusAfterSpotifyClick = [];
 
+    const [ping, setPing] = useState(false);
+
     const handlePlaylistClick = () => {
-        saveSong.map(song => (
-            changePlusAfterSpotifyClick.push(song.id),
-            playlistURI.push(`spotify:track:${song.id}`)
-        ));
-        /*for (let i = 0; i < changePlusAfterSpotifyClick.length; i++) {
-            setPushID(changePlusAfterSpotifyClick[i]);
-            console.log('the click is',changePlusAfterSpotifyClick[i]);
+        if (saveSong == "") {
+            setPing(false);
+            alert ("Please add a song to your playlist before saving to Spotify.");
+        } else {
+            setPing(true);
+            saveSong.map(song => (
+                changePlusAfterSpotifyClick.push(song.id),
+                playlistURI.push(`spotify:track:${song.id}`)
+            ));
             
-        }*/
-        setPushID(changePlusAfterSpotifyClick);
-        console.log(playlistURI);
-        setSaveSong("");
+            setPushID(changePlusAfterSpotifyClick);
+            console.log(playlistURI);
+            setSaveSong("");
+            
+        }
     };
-    
+    let collectNamePing = ping;
+    //Sends Playlist Name Info To App.js
+    const sendPlaylistName = (collectedName) => {
+        props.collectPlaylistName(collectedName, ping);
+    }
 
     return (
         <div>
@@ -164,7 +175,10 @@ function SearchResults(props) {
                     />
                 </section>
                 <section className={`${styles.AddedSongs} ${styles.dividedArea}`}>
-                    <PlaylistTitle />
+                    <PlaylistTitle
+                        collectName={sendPlaylistName}
+                        sendCollectPing={collectNamePing}
+                    />
                     {createList}
                     <button
                         className={styles.spotifyButtons}

@@ -6,7 +6,7 @@ import { SearchResults } from '../SearchResults/SearchResults';
 
 function App() {
   const appBaseURL = "http://localhost:3000";
-  const spotifyBaseRL= "https://api.spotify.com";
+  const spotifyBaseRL= "https://api.spotify.com/v1";
   const clientId = 'd8cee3074f8840db821ef5d5b9df1337';
   const redirect_uri = `${appBaseURL}/callback`;
   const params = new URLSearchParams(window.location.hash);
@@ -16,8 +16,8 @@ function App() {
   const accessDenied = params.get("#error");
 
   
-  //Retrieves user's access token from Spotify
-  const getAccessToken = async () => {
+  //Retrieves User's Access Token From Spotify
+  async function getAccessToken() {
     try {
       if (!accessToken) {
         alert (
@@ -44,7 +44,7 @@ function App() {
           
         const state = await generateRandomString(16);
         localStorage.setItem("stateKey", state);
-        let scope = 'user-read-private user-read-email';
+        let scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
         
         let url = 'https://accounts.spotify.com/authorize';
         url += '?response_type=token';
@@ -61,9 +61,37 @@ function App() {
     }
   }
 
+  //Retrieve's User's Profile Info
+  const [userID, setUserID] = useState("");
+
+  async function getProfileID() {
+    const profileEndpoint = "/me";
+    const urlToFetch = `${spotifyBaseRL}${profileEndpoint}`;
+    
+    try {
+      const response = await fetch(urlToFetch, {
+        method: "GET", headers: { Authorization: `Bearer ${accessToken}` }
+      });
+
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        const profileID = jsonResponse.id;
+
+        setUserID(profileID);
+
+        return profileID;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getAccessToken();
+    getProfileID();
   }, [])
+
+  
 
   //Send Search Results to Spotify
   const [userSearchResults, setuserSearchResults] = useState("");
@@ -71,10 +99,9 @@ function App() {
   const collectUserSearch = (collectedResults) => {
     setuserSearchResults(collectedResults);
   }
-  console.log(userSearchResults);
 
-  const getSearch = async () => {
-    const searchRequestEndpoint = "/v1/search";
+  async function getSearch() {
+    const searchRequestEndpoint = "/search";
     const requestParams = `?q=${userSearchResults}&type=track`;
     const urlToFetch = `${spotifyBaseRL}${searchRequestEndpoint}${requestParams}`;
     
@@ -86,7 +113,7 @@ function App() {
       if (response.ok) {
         const jsonResponse = await response.json();
         const tracks = jsonResponse.tracks.items;
-        console.log(tracks);
+        
         setSpotifySearchResults(tracks);
         
         return tracks;
@@ -101,6 +128,28 @@ function App() {
     
   }, [userSearchResults])
   
+  //Creates Playlist on User's Spotify
+
+  async function sendPlaylistName(name) {
+    const playlistNameEndpoint = `/users/${userID}/playlists`;
+    const urlToFetch = `${spotifyBaseRL}${playlistNameEndpoint}`;
+    const bodyToSend = {name: name}
+    
+    try {
+      const response = await fetch(urlToFetch, {
+        method: "POST", 
+        body: JSON.stringify(bodyToSend),
+        headers: {Authorization: `Bearer ${accessToken}`}
+      });
+
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        console.log(jsonResponse);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   
   return (
     <div className="App">
@@ -111,6 +160,7 @@ function App() {
         <SearchResults
           collectSearch={collectUserSearch}
           sendSearch={spotifySearchResults}
+          collectPlaylistName={sendPlaylistName}
         />
       </main>
     </div>
