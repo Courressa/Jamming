@@ -1,0 +1,12 @@
+.moreInfo h2, .moreInfo h3 {
+    text-align: center;
+}
+
+.moreInfo h2 {
+    margin-bottom: 2rem;
+}
+
+.moreInfo img {
+    max-width: 65%;
+    height: auto;
+}

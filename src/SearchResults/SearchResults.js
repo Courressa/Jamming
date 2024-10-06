@@ -32,8 +32,12 @@ function SearchResults(props) {
     const [results, setResults] = useState([]);
     const [songName, setSongName] = useState("Select Arrow For More Info");
     const [artist, setArtist] = useState("");
-    const [album , setAlbum ] = useState("");
+    const [album , setAlbum] = useState("");
+    const [image , setImage] = useState("");
+    const [popularity , setPopularity] = useState("None");
+    const [songLink , setSongLink] = useState("");
 
+    //getting and sending search results
     const sendUserSearch = (collectedSearch) => {
         props.collectSearch(collectedSearch);
     }
@@ -43,8 +47,10 @@ function SearchResults(props) {
     }, [props.sendSearch])
     console.log(results);
 
+    //Displays more info for selected track
     const handleMoreInfoClick = (moreInfoID) => {
         let trackID = moreInfoID;
+        let imageIndex = 0;
         
         results.map((item) => {
             const displaysArtists = (
@@ -53,20 +59,28 @@ function SearchResults(props) {
                 ))
             );
 
-            
+            const displayImage = (
+                item.album.images.map(image => image.url)
+            );
 
+            
             if (trackID == item.id) {
                 setSongName(item.name);
                 setArtist(displaysArtists);
                 setAlbum(item.album.name);
+                setImage(displayImage[imageIndex]);
+                setPopularity(item.popularity);
+                setSongLink(item.external_urls.spotify);
             }
+            
         });
         
         
     };
-
+    
     const [saveSong, setSaveSong] = useState("");
    
+    //adding or removing song from playlist
     const handlePlusClick = (plusMinusID) => {
         let songID = plusMinusID;
 
@@ -98,6 +112,7 @@ function SearchResults(props) {
         />))
     }
 
+    //creat playlist to send to Spotify
     let playlistURI = [];
 
     const handlePlaylistClick = () => {
@@ -117,7 +132,7 @@ function SearchResults(props) {
                 />
             </section>
             <div className={styles.songSections}>
-                <section className={styles.searchList}>
+                <section className={`${styles.searchList} ${styles.dividedArea}`}>
                     {results.map((song, index) => (
                         <Tracklist
                             key={song.id}
@@ -131,14 +146,17 @@ function SearchResults(props) {
                         </Tracklist>
                     ))}
                 </section>
-                <section className={styles.moreInfo}>
+                <section className={`${styles.moreInfo} ${styles.dividedArea}`}>
                     <Track 
                         name={songName}
                         songArtist={artist}
                         songAlbum={album}
+                        songImage={image}
+                        songPopularity={popularity}
+                        songOnSpitfyLink={songLink}
                     />
                 </section>
-                <section className={styles.AddedSongs}>
+                <section className={`${styles.AddedSongs} ${styles.dividedArea}`}>
                     <PlaylistTitle />
                     {createList}
                     <button
