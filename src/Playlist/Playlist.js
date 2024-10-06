@@ -22,9 +22,9 @@ function Playlist(props) {
                 <h2>{props.listObject.name}</h2>
                 <h3>{displaysArtists}</h3>
             </section>
-            <section>
+            <section className="close">
                 <button
-                    className="material-symbols-outlined"
+                    className="material-symbols-outlined close"
                     onClick={handleRemoval}
                     value={props.listObject.id}
                 >close</button>

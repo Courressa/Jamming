@@ -156,10 +156,11 @@ function SearchResults(props) {
                         songOnSpitfyLink={songLink}
                     />
                 </section>
-                <section className={`${styles.AddedSongs} ${styles.dividedArea} ${styles.spotifyButtons}`}>
+                <section className={`${styles.AddedSongs} ${styles.dividedArea}`}>
                     <PlaylistTitle />
                     {createList}
                     <button
+                        className={styles.spotifyButtons}
                         onClick={handlePlaylistClick}
                     >Save To Spotify</button>
                 </section>
