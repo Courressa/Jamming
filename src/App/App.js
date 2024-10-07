@@ -3,7 +3,6 @@ import './App.css';
 import { SearchResults } from '../SearchResults/SearchResults';
 
 
-
 function App() {
   const appBaseURL = "http://localhost:3000";
   const spotifyBaseRL= "https://api.spotify.com/v1";
@@ -61,6 +60,7 @@ function App() {
     }
   }
 
+
   //Retrieve's User's Profile Info
   const [userID, setUserID] = useState("");
 
@@ -89,9 +89,8 @@ function App() {
   useEffect(() => {
     getAccessToken();
     getProfileID();
-  }, [])
+  }, []);
 
-  
 
   //Send Search Results to Spotify
   const [userSearchResults, setuserSearchResults] = useState("");
@@ -105,51 +104,109 @@ function App() {
     const requestParams = `?q=${userSearchResults}&type=track`;
     const urlToFetch = `${spotifyBaseRL}${searchRequestEndpoint}${requestParams}`;
     
-    try {
-      const response = await fetch(urlToFetch, {
-        method: "GET", headers: { Authorization: `Bearer ${accessToken}` }
-      });
-
-      if (response.ok) {
-        const jsonResponse = await response.json();
-        const tracks = jsonResponse.tracks.items;
-        
-        setSpotifySearchResults(tracks);
-        
-        return tracks;
+    if (userSearchResults !== "") {
+      try {
+        const response = await fetch(urlToFetch, {
+          method: "GET", headers: { Authorization: `Bearer ${accessToken}` }
+        });
+  
+        if (response.ok) {
+          const jsonResponse = await response.json();
+          const tracks = jsonResponse.tracks.items;
+          
+          setSpotifySearchResults(tracks);
+          
+          return tracks;
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
+    
   };
 
   useEffect(() => {
     getSearch();
     
-  }, [userSearchResults])
+  }, [userSearchResults]);
   
-  //Creates Playlist on User's Spotify
 
-  async function sendPlaylistName(name) {
+  //Creates Playlist on User's Spotify
+  const [playlistName, setPlaylistName] = useState("");
+  const [createdPlaylistID, setcreatedPlaylistID] = useState("");
+  const retrieveName = (title) => {
+    console.log('Title in retrieve:', title);
+    setPlaylistName(title);
+  }
+
+  async function sendPlaylistName() {
     const playlistNameEndpoint = `/users/${userID}/playlists`;
     const urlToFetch = `${spotifyBaseRL}${playlistNameEndpoint}`;
-    const bodyToSend = {name: name}
+    const bodyToSend = {name: playlistName}
     
-    try {
-      const response = await fetch(urlToFetch, {
-        method: "POST", 
-        body: JSON.stringify(bodyToSend),
-        headers: {Authorization: `Bearer ${accessToken}`}
-      });
-
-      if (response.ok) {
-        const jsonResponse = await response.json();
-        console.log(jsonResponse);
+    if (userID !== "") {
+      try {
+        const response = await fetch(urlToFetch, {
+          method: "POST", 
+          body: JSON.stringify(bodyToSend),
+          headers: {Authorization: `Bearer ${accessToken}`}
+        });
+  
+        if (response.ok) {
+          const jsonResponse = await response.json();
+          console.log(jsonResponse);
+          const playlistID = jsonResponse.id;
+          setcreatedPlaylistID(playlistID);
+          
+          return playlistID;
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
+    }
+    
+  }
+  useEffect(() => {
+    sendPlaylistName();
+  }, [playlistName]);
+  console.log('playlist name outside:', playlistName);
+
+  const [playlistSongs, setPlaylistSongs] = useState([]);
+  const retrieveSongs = (sentSongs) => {
+    setPlaylistSongs(sentSongs);
+  }
+  
+  async function sendPlaylistSongs() {
+    const playlistSongEndpoint = `/playlists/${createdPlaylistID}/tracks`;
+    const urlToFetch = `${spotifyBaseRL}${playlistSongEndpoint}`;
+    const bodyToSend = {uris: playlistSongs}
+    
+    if (createdPlaylistID !== "") {
+      try {
+        const response = await fetch(urlToFetch, {
+          method: "POST", 
+          body: JSON.stringify(bodyToSend),
+          headers: {Authorization: `Bearer ${accessToken}`}
+        });
+  
+        if (response.ok) {
+          const jsonResponse = await response.json();
+          console.log(jsonResponse);
+          const playlistID = jsonResponse.id;
+          setcreatedPlaylistID(playlistID);
+          setcreatedPlaylistID("");
+
+          return playlistID
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
+
+  useEffect(() => {
+    sendPlaylistSongs();
+  }, [createdPlaylistID]);
   
   return (
     <div className="App">
@@ -160,7 +217,8 @@ function App() {
         <SearchResults
           collectSearch={collectUserSearch}
           sendSearch={spotifySearchResults}
-          collectPlaylistName={sendPlaylistName}
+          collectPlaylistName={retrieveName}
+          collectPlaylistSongs={retrieveSongs}
         />
       </main>
     </div>

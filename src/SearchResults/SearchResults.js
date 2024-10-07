@@ -131,15 +131,16 @@ function SearchResults(props) {
             ));
             
             setPushID(changePlusAfterSpotifyClick);
+            props.collectPlaylistSongs(playlistURI);
             console.log(playlistURI);
             setSaveSong("");
-            
         }
     };
     let collectNamePing = ping;
     //Sends Playlist Name Info To App.js
     const sendPlaylistName = (collectedName) => {
-        props.collectPlaylistName(collectedName, ping);
+        props.collectPlaylistName(collectedName);
+        setPing(false);
     }
 
     return (
