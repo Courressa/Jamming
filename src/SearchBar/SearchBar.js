@@ -25,6 +25,7 @@ function SearchBar(props) {
                 placeholder="Search..."
             />
             <input
+                aria-label="Submit"
                 name="SearchButton"
                 className={`${styles.searchSection} ${styles.button} material-symbols-outlined`}
                 type="submit"

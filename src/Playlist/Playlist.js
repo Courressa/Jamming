@@ -24,6 +24,7 @@ function Playlist(props) {
             </section>
             <section className="close">
                 <button
+                    aria-label="Remove Song"
                     className="material-symbols-outlined close"
                     onClick={handleRemoval}
                     value={props.listObject.id}

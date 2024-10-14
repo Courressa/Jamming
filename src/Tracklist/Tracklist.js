@@ -6,34 +6,38 @@ import "../Song&Icon Styles/ButtonIcons.css";
 
 function Tracklist(props) {
   const [minusPlus, setMinusPlus] = useState("add");
+  const [ariaLabel, setAriaLabel] = useState("Add Song To Playlist");
   const songlist = [props.songObject]
 
   useEffect(() => {
     songlist.map((song) => {
+      //change to plus when removed from playlist section
       if (song.id == props.collectID) {
         setMinusPlus("add");
       }
 
+      //change to plus when all songs are sent to Spotify from playlist section
       for (let i = 0; i < props.collectID.length; i++) {
         if (song.id == props.collectID[i]) {
           setMinusPlus("add");
         };
-  
       }
 
-    }, [props.collectID])
+    })
     
 
-  });
+  }, [props.collectID]);
   
   const handleToggle = (event) => {
     props.addMinus(event.target.value);
 
-    if (minusPlus === ("add")) {
+    if (minusPlus === "add") {
       setMinusPlus("remove");
-  } else if (minusPlus === ("remove")) {
+      setAriaLabel("Remove Song From Playlist");
+    } else if (minusPlus === "remove") {
       setMinusPlus("add");
-  }
+      setAriaLabel("Add Song To Playlist");
+    }
   };
 
   const handleInfo = (event) => {
@@ -52,9 +56,11 @@ function Tracklist(props) {
       <section>
         <h2>{props.songObject.name}</h2>
         <h3>{displaysArtists}</h3>
+        
       </section>
       <section className="addMinus">
         <button
+          aria-label={ariaLabel}
           className="material-symbols-outlined"
           onClick={handleToggle}
           value={props.songObject.id}
@@ -62,6 +68,7 @@ function Tracklist(props) {
           {minusPlus}
         </button>
         <button
+          aria-label="More Information On Song"
           className="material-symbols-outlined"
           onClick={handleInfo}
           value={props.songObject.id}

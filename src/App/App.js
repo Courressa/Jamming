@@ -19,7 +19,7 @@ function App() {
   async function getAccessToken() {
     try {
       if (!accessToken) {
-        alert (
+        window.alert (
           'Jammming sends your created playlist to Spotify. Login to your spotify account to provide access.'
         );
         redirectToAuthCodeFlow(clientId);

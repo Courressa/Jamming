@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import styles from "../Song&Icon Styles/List.module.css";
 
 function PlaylistTitle(props) {
-    const [title, setTitle] = useState("Playlist Name");
+    const [title, setTitle] = useState("");
     const handleTitleChange = (event) => {
         setTitle(event.target.value);
     };
+    console.log(title);
     
     useEffect(() => {
         if (props.sendCollectPing) {
@@ -20,11 +21,13 @@ function PlaylistTitle(props) {
         <div>
             <form>
                 <input 
+                    aria-label="Playlist Name"
                     name="PlaylistTitle"
                     value={title}
                     onChange={handleTitleChange}
                     className={styles.playlistName}
                     type="text"
+                    placeholder="Playlist Name"
                 />
             </form>
         </div>

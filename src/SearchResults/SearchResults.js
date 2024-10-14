@@ -63,7 +63,7 @@ function SearchResults(props) {
             );
 
             
-            if (trackID == item.id) {
+            if (trackID === item.id) {
                 setSongName(item.name);
                 setArtist(displaysArtists);
                 setAlbum(item.album.name);
@@ -84,7 +84,7 @@ function SearchResults(props) {
         let songID = plusMinusID;
 
         results.map((item) => {
-            if (songID == item.id) {
+            if (songID === item.id) {
                 setSaveSong(prev => {
                     if (prev.includes(item)) {
                         return prev.filter(x => x !== item);
@@ -120,7 +120,7 @@ function SearchResults(props) {
     const [ping, setPing] = useState(false);
 
     const handlePlaylistClick = () => {
-        if (saveSong == "") {
+        if (saveSong === "") {
             setPing(false);
             alert ("Please add a song to your playlist before saving to Spotify.");
         } else {
