@@ -6,28 +6,6 @@ import { SearchBar } from "../SearchBar/SearchBar";
 import { PlaylistTitle } from "../Playlist/PlaylistTitle";
 import styles from "./SearchResults.module.css";
 
-
-const testSong = [
-    {
-      id: 1,
-      name: "Something Good!",
-      artists: "Nyx",
-      album: "Reach For The Stars",
-    },
-    {
-      id: 2,
-      name: "Leave Your Mark",
-      artists: "Symphony",
-      album: "Aim",
-    },
-    {
-        id: 3,
-        name: "asdasd",
-        artists: "sadasd",
-        album: "asd",
-      },
-];
-
 function SearchResults(props) {
     const [results, setResults] = useState([]);
     const [songName, setSongName] = useState("Select Arrow For More Info");
@@ -101,6 +79,12 @@ function SearchResults(props) {
         setPushID(collectedID);
     };
 
+    //helps with effect change in tracklist to change to plus sign when 1 specific song is consecutively added and removed with X
+    const [collectForCount, setcollectForCount] = useState(0); 
+    const handleTracklistEffectCount = () => {
+        setcollectForCount(collectForCount + 1);
+    }
+
     let createList;
     if (saveSong) {
         createList = saveSong.map((selected) => (
@@ -109,6 +93,7 @@ function SearchResults(props) {
             listObject={selected}
             remove={handleAddRemoveClick}
             collectRemoval={changeToPlus}
+            collectCount={handleTracklistEffectCount}
         />))
     }
 
@@ -131,7 +116,6 @@ function SearchResults(props) {
             
             setPushID(changePlusAfterSpotifyClick);
             props.collectPlaylistSongs(playlistURI);
-            console.log(playlistURI);
             setSaveSong("");
         }
     };
@@ -164,6 +148,7 @@ function SearchResults(props) {
                             addMinus={handleAddRemoveClick}
                             info={handleMoreInfoClick}
                             collectID={pushID}
+                            sendEffectCount={collectForCount}
                         >
                         </Tracklist>
                     ))}

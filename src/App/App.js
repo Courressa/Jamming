@@ -53,15 +53,6 @@ function App() {
         url += '&state=' + encodeURIComponent(state);
         
         document.location.assign(url);
-
-        /*const url = new URLSearchParams(); 
-        url.append('?response_type', 'token');
-        url.append('&client_id', encodeURIComponent(clientId));
-        url.append('&scope', encodeURIComponent(scope));
-        url.append('&redirect_uri', encodeURIComponent(redirect_uri));
-        url.append('&state', encodeURIComponent(state));
-        
-        document.location = `https://accounts.spotify.com/authorize${url.toString()}`;*/
       }
       
     } catch (error) {
@@ -144,7 +135,6 @@ function App() {
   const [playlistName, setPlaylistName] = useState("");
   const [createdPlaylistID, setcreatedPlaylistID] = useState("");
   const retrieveName = (title) => {
-    console.log('Title in retrieve:', title);
     setPlaylistName(title);
   }
 
@@ -163,7 +153,6 @@ function App() {
   
         if (response.ok) {
           const jsonResponse = await response.json();
-          console.log(jsonResponse);
           const playlistID = jsonResponse.id;
           setcreatedPlaylistID(playlistID);
           
@@ -178,7 +167,6 @@ function App() {
   useEffect(() => {
     sendPlaylistName();
   }, [playlistName]);
-  console.log('playlist name outside:', playlistName);
 
   const [playlistSongs, setPlaylistSongs] = useState([]);
   const retrieveSongs = (sentSongs) => {
@@ -200,7 +188,6 @@ function App() {
   
         if (response.ok) {
           const jsonResponse = await response.json();
-          console.log(jsonResponse);
           const playlistID = jsonResponse.id;
           setcreatedPlaylistID(playlistID);
           setcreatedPlaylistID("");

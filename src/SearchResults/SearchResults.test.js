@@ -3,43 +3,6 @@ import { render, screen, cleanup, waitFor } from '@testing-library/react';
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 import { SearchResults } from './SearchResults';
-import { Playlist } from '../Playlist/Playlist';
-import { SearchBar } from '../SearchBar/SearchBar';
-
-/*it('Accepts user search input to send to App on click to search', () => {
-    collectUserSearch = jest.fn();
-    render(<SearchResults
-        collectSearch={collectUserSearch}    
-    />)
-
-    const searchBar = screen.findByRole('textbox', {name: /search/i});
-    const searchButton = screen.getByRole('button', {name: /submit/i});
-    expect()
-
-});*/
-
-/*it ('Song is removed from playlist after X is clicked', async () => {
-    const songObject = {
-      name: "Something Good!",
-      artists: [{name: "Nyx"}, {name: "Symphony"}]
-    }
-
-    render(<SearchResults />)
-    render(<Playlist
-        listObject={songObject}
-    />);
-    
-    const removeButton = await screen.findByRole('button', {name: "Remove Song"});
-    await userEvent.click(removeButton);
-    await waitFor(() => {
-        const songTitle = screen.queryByRole('heading', {name: "Something Good!"});
-        const songArtists = screen.queryByRole('heading', {name: "Nyx, Symphony"});
-
-        expect(songTitle).toBeNull();
-        expect(songArtists).toBeNull();
-    })
-});*/
-
 
 global.open = jest.fn();
 

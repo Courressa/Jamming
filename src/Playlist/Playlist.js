@@ -7,7 +7,7 @@ function Playlist(props) {
     const handleRemoval = (event) => {
         props.remove(event.target.value);
         props.collectRemoval(event.target.value);
-        
+        props.collectCount();
     };
 
     const displaysArtists = (
