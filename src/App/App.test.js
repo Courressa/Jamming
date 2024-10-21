@@ -148,7 +148,7 @@ it('Sends selected songs and playlist title to spotify when save to spotify is c
 
   const titleInput = screen.getByRole('textbox', {name: "Playlist Name"});
   await userEvent.type(titleInput, 'My Chill Playlist');
-  screen.debug();
+  
   const sendToSpotifyButton = screen.getByRole('button', {name: "Save To Spotify"});
   await userEvent.click(sendToSpotifyButton);
 
