@@ -73,7 +73,7 @@ function Tracklist(props) {
           onClick={handleInfo}
           value={props.songObject.id}
         >
-          arrow_right
+          double_arrow
         </button>
       </section>
     </div>

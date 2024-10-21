@@ -8,7 +8,7 @@ import styles from "./SearchResults.module.css";
 
 function SearchResults(props) {
     const [results, setResults] = useState([]);
-    const [songName, setSongName] = useState("Select Arrow For More Info");
+    const [songName, setSongName] = useState("Select An Arrow Button");
     const [artist, setArtist] = useState("");
     const [album , setAlbum] = useState("");
     const [image , setImage] = useState("");
