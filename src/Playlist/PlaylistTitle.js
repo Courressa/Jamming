@@ -6,16 +6,12 @@ function PlaylistTitle(props) {
     const handleTitleChange = (event) => {
         setTitle(event.target.value);
     };
-    console.log(title);
     
     useEffect(() => {
         if (props.sendCollectPing) {
             props.collectName(title);
         }
     }, [props.sendCollectPing]);
-
-    
-    
 
     return (
         <div>

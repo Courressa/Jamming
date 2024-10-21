@@ -10,7 +10,7 @@ function SearchBar(props) {
 
     const handleSendingUserSearch = (event) => {
         event.preventDefault();
-        props.collectSearch(userSearch);
+        props.collectSearchInput(userSearch);
     }
     return (
     <div>

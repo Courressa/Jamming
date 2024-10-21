@@ -62,29 +62,29 @@ function SearchResults(props) {
                 item.album.images.map(image => image.url)
             );
 
-            
-            if (trackID === item.id) {
+            if (trackID == item.id) {
                 setSongName(item.name);
                 setArtist(displaysArtists);
                 setAlbum(item.album.name);
                 setImage(displayImage[imageIndex]);
                 setPopularity(item.popularity);
                 setSongLink(item.external_urls.spotify);
+                
             }
-            
         });
         
         
     };
     
     const [saveSong, setSaveSong] = useState("");
-   
+    const [addMinus, setAddMinus] = useState("");
+
     //adding or removing song from playlist
-    const handlePlusClick = (plusMinusID) => {
+    const handleAddRemoveClick = (plusMinusID) => {
         let songID = plusMinusID;
 
         results.map((item) => {
-            if (songID === item.id) {
+            if (songID == item.id) {
                 setSaveSong(prev => {
                     if (prev.includes(item)) {
                         return prev.filter(x => x !== item);
@@ -96,6 +96,7 @@ function SearchResults(props) {
         });
     };
     const [pushID, setPushID] = useState("");
+    
     const changeToPlus = (collectedID) => {
         setPushID(collectedID);
     };
@@ -106,12 +107,10 @@ function SearchResults(props) {
         <Playlist
             key={selected.id}
             listObject={selected}
-            remove={handlePlusClick}
+            remove={handleAddRemoveClick}
             collectRemoval={changeToPlus}
         />))
     }
-
-    
 
     //creat playlist to send to Spotify
     let playlistURI = [];
@@ -147,25 +146,33 @@ function SearchResults(props) {
         <div>
             <section className={styles.searchBar}>
                 <SearchBar 
-                    collectSearch={sendUserSearch}
+                    collectSearchInput={sendUserSearch}
                 />
             </section>
             <div className={styles.songSections}>
-                <section className={`${styles.searchList} ${styles.dividedArea}`}>
+                <section
+                    className={`${styles.searchList} ${styles.dividedArea}`}
+                    aria-label="Tracklist With Search Results"
+                    data-testid="Tracklist With Search Results"
+                >
                     {results.map((song, index) => (
                         <Tracklist
                             key={song.id}
                             value={song.name}
                             songObject={song}
                             index={index}
-                            addMinus={handlePlusClick}
+                            addMinus={handleAddRemoveClick}
                             info={handleMoreInfoClick}
                             collectID={pushID}
                         >
                         </Tracklist>
                     ))}
                 </section>
-                <section className={`${styles.moreInfo} ${styles.dividedArea} ${styles.spotifyButtons}`}>
+                <section
+                    className={`${styles.moreInfo} ${styles.dividedArea} ${styles.spotifyButtons}`}
+                    aria-label="More Information On Selected Song"
+                    data-testid="More Information On Selected Song"
+                >
                     <Track 
                         name={songName}
                         songArtist={artist}
@@ -175,7 +182,11 @@ function SearchResults(props) {
                         songOnSpitfyLink={songLink}
                     />
                 </section>
-                <section className={`${styles.AddedSongs} ${styles.dividedArea}`}>
+                <section
+                    className={`${styles.AddedSongs} ${styles.dividedArea}`}
+                    aria-label="Created Playlist"
+                    data-testid="Created Playlist"
+                >
                     <PlaylistTitle
                         collectName={sendPlaylistName}
                         sendCollectPing={collectNamePing}

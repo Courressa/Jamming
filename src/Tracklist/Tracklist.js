@@ -9,16 +9,28 @@ function Tracklist(props) {
   const [ariaLabel, setAriaLabel] = useState("Add Song To Playlist");
   const songlist = [props.songObject]
 
+  let countToChangeEffect = 0; //used so it will change to plus even when only a certain song is removed and added consecutively
+  let collectForCount = [];
+  if (props.collectID) {
+    collectForCount.push(props.collectID);
+    //countToChangeEffect++;
+    for (let i = 0; i < collectForCount.length; i++) {
+      countToChangeEffect = i;
+    }
+    console.log("change effect", countToChangeEffect);
+  }
+
+
   useEffect(() => {
     songlist.map((song) => {
       //change to plus when removed from playlist section
-      if (song.id == props.collectID) {
+      if (song.id === props.collectID) {
         setMinusPlus("add");
       }
 
       //change to plus when all songs are sent to Spotify from playlist section
       for (let i = 0; i < props.collectID.length; i++) {
-        if (song.id == props.collectID[i]) {
+        if (song.id === props.collectID[i]) {
           setMinusPlus("add");
         };
       }

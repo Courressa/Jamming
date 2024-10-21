@@ -19,7 +19,7 @@ function App() {
   async function getAccessToken() {
     try {
       if (!accessToken) {
-        window.alert (
+        alert (
           'Jammming sends your created playlist to Spotify. Login to your spotify account to provide access.'
         );
         redirectToAuthCodeFlow(clientId);
@@ -52,7 +52,16 @@ function App() {
         url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
         url += '&state=' + encodeURIComponent(state);
         
-        document.location = url;
+        document.location.assign(url);
+
+        /*const url = new URLSearchParams(); 
+        url.append('?response_type', 'token');
+        url.append('&client_id', encodeURIComponent(clientId));
+        url.append('&scope', encodeURIComponent(scope));
+        url.append('&redirect_uri', encodeURIComponent(redirect_uri));
+        url.append('&state', encodeURIComponent(state));
+        
+        document.location = `https://accounts.spotify.com/authorize${url.toString()}`;*/
       }
       
     } catch (error) {
@@ -72,11 +81,11 @@ function App() {
       const response = await fetch(urlToFetch, {
         method: "GET", headers: { Authorization: `Bearer ${accessToken}` }
       });
-
+      
       if (response.ok) {
         const jsonResponse = await response.json();
         const profileID = jsonResponse.id;
-
+        
         setUserID(profileID);
 
         return profileID;
@@ -109,7 +118,7 @@ function App() {
         const response = await fetch(urlToFetch, {
           method: "GET", headers: { Authorization: `Bearer ${accessToken}` }
         });
-  
+        
         if (response.ok) {
           const jsonResponse = await response.json();
           const tracks = jsonResponse.tracks.items;
