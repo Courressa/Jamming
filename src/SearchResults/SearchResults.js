@@ -103,11 +103,12 @@ function SearchResults(props) {
     let changePlusAfterSpotifyClick = [];
 
     const [ping, setPing] = useState(false);
+    const [confirmPlaylistNameForClick, setConfirmPlaylistNameForClick] = useState("");
 
     const handlePlaylistClick = () => {
-        if (saveSong === "") {
+        if (saveSong === "" || confirmPlaylistNameForClick === "") {
             setPing(false);
-            alert ("Please add a song to your playlist before saving to Spotify.");
+            alert ("Please add a song to your playlist and name your playlist before saving to Spotify.");
         } else {
             setPing(true);
             saveSong.map(song => (
@@ -124,6 +125,7 @@ function SearchResults(props) {
     //Sends Playlist Name Info To App.js
     const sendPlaylistName = (collectedName) => {
         props.collectPlaylistName(collectedName);
+        setConfirmPlaylistNameForClick(collectedName);
         setPing(false);
     }
 

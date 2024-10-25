@@ -11,6 +11,7 @@
 
 .titleArtist {
     grid-area: title;
+    width: 80%;
 }
 
 .tracklistButtons {
@@ -19,6 +20,7 @@
 }
 
 .playlistName {
+    font-size: 1rem;
     margin-bottom: 3rem;
     padding: 0 1rem;
     height: 3rem;

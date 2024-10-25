@@ -9,6 +9,7 @@ form {
 }
 
 .bar {
+    font-size: 1rem;
     width: 25rem;
     margin-top: 0;
     border-top-left-radius: 1rem;

@@ -19,6 +19,7 @@ function App() {
   async function getAccessToken() {
     try {
       if (!accessToken) {
+        console.log("this runs twice");
         alert (
           'Jammming sends your created playlist to Spotify. Login to your spotify account to provide access.'
         );
