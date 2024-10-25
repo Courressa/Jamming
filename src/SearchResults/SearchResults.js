@@ -14,6 +14,7 @@ function SearchResults(props) {
     const [image , setImage] = useState("");
     const [popularity , setPopularity] = useState("None");
     const [songLink , setSongLink] = useState("");
+    const [preview, setPreview] = useState("")
 
     //getting and sending search results
     const sendUserSearch = (collectedSearch) => {
@@ -47,7 +48,7 @@ function SearchResults(props) {
                 setImage(displayImage[imageIndex]);
                 setPopularity(item.popularity);
                 setSongLink(item.external_urls.spotify);
-                
+                setPreview(item.preview_url);
             }
         });
         
@@ -165,6 +166,7 @@ function SearchResults(props) {
                         songImage={image}
                         songPopularity={popularity}
                         songOnSpitfyLink={songLink}
+                        songPreview={preview}
                     />
                 </section>
                 <section

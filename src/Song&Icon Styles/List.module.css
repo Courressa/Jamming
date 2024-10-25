@@ -4,6 +4,18 @@
     margin-bottom: 1rem;
     border-radius: 1rem;
     width: 100%;
+    display: grid;
+    grid-template: 
+        "title buttons" 1fr/ 3fr 1fr;
+}
+
+.titleArtist {
+    grid-area: title;
+}
+
+.tracklistButtons {
+    grid-area: buttons;
+    align-content: center;
 }
 
 .playlistName {
@@ -18,4 +30,14 @@
 
 .playlistName::placeholder {
     color: #EFEFEF;
+}
+
+@media only screen and (max-width: 1105px) {
+    .playlistName {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 590px)  {
+
 }

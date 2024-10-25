@@ -10,3 +10,7 @@
     max-width: 65%;
     height: auto;
 }
+
+.moreInfo audio {
+    padding: 0.5rem;
+}

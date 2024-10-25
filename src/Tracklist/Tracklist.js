@@ -53,12 +53,12 @@ function Tracklist(props) {
 
   return (
     <div className={styles.eachSong}>
-      <section>
+      <section className={styles.titleArtist}>
         <h2>{props.songObject.name}</h2>
         <h3>{displaysArtists}</h3>
         
       </section>
-      <section className="addMinus">
+      <section className={`addMinus ${styles.tracklistButtons}`}>
         <button
           aria-label={ariaLabel}
           className="material-symbols-outlined"

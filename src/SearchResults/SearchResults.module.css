@@ -26,6 +26,7 @@ h2, h3 {
     overflow-y: scroll;
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.199) rgba(0, 0, 0, 0);
+    width: 100%;
 }
 
 .songSections {
@@ -84,4 +85,47 @@ h2, h3 {
     letter-spacing: 0.1rem;
     height: 3.3rem;
     width: 11rem;
+}
+
+@media only screen and (max-width: 820px) {
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    .songSections {
+        grid-template: 
+            ".search search ." 1fr
+            ". more more ." 1fr
+            ". playlist playlist ." 1fr/ 1fr 1fr 1fr 1fr;
+        margin: 4rem 3rem;
+        padding: 5rem 0rem;
+    }
+
+    .dividedArea {
+        padding: 3rem;
+        border-radius: 1rem;
+        box-shadow: 0.6rem 0.6rem 1rem;
+        height: 35rem;
+        width: auto;
+        
+    }
+
+    .spotifyButtons button, button.spotifyButtons {
+        height: 3.3rem;
+        width: 11rem;
+    }
+}
+
+@media only screen and (max-width: 590px)  {
+    .dividedArea {
+        padding: 3rem;
+        border-radius: 1rem;
+        box-shadow: 0.6rem 0.6rem 1rem;
+        height: 35rem;
+        width: 18rem;
+    }
 }

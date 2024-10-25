@@ -4,13 +4,19 @@ import styles from "./Track.module.css";
 function Track(props) {
     let showImage;
     if (props.songAlbum) {
-        showImage = <img src={props.songImage} alt={`Artist ${props.songArtist}'s album`} aria-label="album image"/>;
+        showImage = <img src={props.songImage} alt={`Artist ${props.songArtist}'s album`} aria-label="Album Image"/>;
     }
 
     const handleListenOnSpotify = () => {
         window.open(`${props.songOnSpitfyLink}`,'_blank');
     };
     
+    let showAudio;
+    if (props.songPreview) {
+        showAudio = <audio src={props.songPreview} controls aria-label="Song Preview"> Your Browser Does Not Support This Audio</audio>;
+    } else {
+        showAudio = "No Preview Available";
+    }
 
     return (
         <div className={styles.moreInfo}>
@@ -19,6 +25,12 @@ function Track(props) {
             <h3>Artist: {props.songArtist}</h3>
             <h3>Album: {props.songAlbum}</h3>
             <h3>Popularity: {props.songPopularity}/100</h3>
+            <br />
+            <h3>Preview:
+                <br />
+                <br />
+                {showAudio}
+            </h3>
             <button
                 onClick={handleListenOnSpotify}
             >
