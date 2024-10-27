@@ -1,13 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    font-size: 16px;
-}
-
 h2, h3 {
     font-family: "Fira Sans", sans-serif;
     font-weight: 400;
@@ -121,10 +111,16 @@ h2, h3 {
     }
 }
 
-@media only screen and (max-width: 380px)  {
+@media only screen and (max-width: 450px)  {
     .dividedArea {
         padding: 1.5rem;
         height: 35rem;
         width: 18rem;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .songSections {
+        box-shadow: 0rem 0rem 0rem;
     }
 }
