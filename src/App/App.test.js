@@ -153,7 +153,7 @@ it('Sends selected songs and playlist title to spotify when save to spotify is c
   await userEvent.click(sendToSpotifyButton);
 
   await waitFor(() => {
-    //checks if playlist is created with entered title
+    //Checks if playlist is created with entered title
     expect(global.fetch).toHaveBeenCalledWith(
       expect.stringContaining('/playlists'),
       expect.objectContaining({
@@ -166,7 +166,7 @@ it('Sends selected songs and playlist title to spotify when save to spotify is c
         }),
       })
     );
-    //checks if songs were sent to created playlist
+    //Checks if songs were sent to created playlist
     expect(global.fetch).toHaveBeenCalledWith(
       expect.stringContaining('/tracks'),
       expect.objectContaining({

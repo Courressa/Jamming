@@ -488,7 +488,5 @@ describe('Playlist Section', () => {
         await userEvent.click(plusButton);
         const titleInput = screen.getByRole('textbox', {name: "Playlist Name"});
         await userEvent.type(titleInput, 'The user types');
-        const sendToSpotifyButton = screen.getByRole('button', {name: "Save To Spotify"});
-        //await userEvent.click(sendToSpotifyButton);
     })
 });

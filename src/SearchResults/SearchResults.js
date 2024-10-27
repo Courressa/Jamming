@@ -16,7 +16,7 @@ function SearchResults(props) {
     const [songLink , setSongLink] = useState("");
     const [preview, setPreview] = useState("")
 
-    //getting and sending search results
+    //Getting and sending search results
     const sendUserSearch = (collectedSearch) => {
         props.collectSearch(collectedSearch);
     }
@@ -58,7 +58,7 @@ function SearchResults(props) {
     const [saveSong, setSaveSong] = useState("");
     const [addMinus, setAddMinus] = useState("");
 
-    //adding or removing song from playlist
+    //Adding or removing song from playlist
     const handleAddRemoveClick = (plusMinusID) => {
         let songID = plusMinusID;
 
@@ -80,7 +80,7 @@ function SearchResults(props) {
         setPushID(collectedID);
     };
 
-    //helps with effect change in tracklist to change to plus sign when 1 specific song is consecutively added and removed with X
+    //Helps with effect change in tracklist to change to plus sign when 1 specific song is consecutively added and removed with X
     const [collectForCount, setcollectForCount] = useState(0); 
     const handleTracklistEffectCount = () => {
         setcollectForCount(collectForCount + 1);
@@ -98,7 +98,7 @@ function SearchResults(props) {
         />))
     }
 
-    //creat playlist to send to Spotify
+    //Creates playlist to send to Spotify
     let playlistURI = [];
     let changePlusAfterSpotifyClick = [];
 

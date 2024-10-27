@@ -11,12 +11,12 @@ function Tracklist(props) {
 
   useEffect(() => {
     songlist.map((song) => {
-      //change to plus when removed from playlist section
+      //Change to plus when removed from playlist section
       if (song.id === props.collectID) {
         setMinusPlus("add");
       }
 
-      //change to plus when all songs are sent to Spotify from playlist section
+      //Change to plus when all songs are sent to Spotify from playlist section
       for (let i = 0; i < props.collectID.length; i++) {
         if (song.id === props.collectID[i]) {
           setMinusPlus("add");
