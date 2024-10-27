@@ -232,7 +232,7 @@ describe('More Information Section', () => {
         })
     
         const album = await screen.findByRole('heading', {name: /Aim/i});
-        const image = await screen.findByRole('img', {name: "album image"});
+        const image = await screen.findByRole('img', {name: /Album/i});
         const popularity = await screen.findByRole('heading', {name: /92/i});
         const listenOnSpotifyButton = screen.getByRole('button', {name: "Listen On Spotify"});
     

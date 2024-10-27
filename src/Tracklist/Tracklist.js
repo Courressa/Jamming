@@ -9,24 +9,25 @@ function Tracklist(props) {
   const [ariaLabel, setAriaLabel] = useState("Add Song To Playlist");
   const songlist = [props.songObject]
 
+  //Change to plus when removed from playlist section
   useEffect(() => {
     songlist.map((song) => {
-      //Change to plus when removed from playlist section
       if (song.id === props.collectID) {
         setMinusPlus("add");
       }
+    })
+  }, [props.sendEffectCount]);
 
-      //Change to plus when all songs are sent to Spotify from playlist section
+  //Change to plus when all songs are sent to Spotify from playlist section
+  useEffect(() => {
+    songlist.map((song) => {
       for (let i = 0; i < props.collectID.length; i++) {
         if (song.id === props.collectID[i]) {
           setMinusPlus("add");
         };
       }
-
     })
-    
-
-  }, [props.sendEffectCount]);
+  }, [props.collectID]);
   
   const handleToggle = (event) => {
     props.addMinus(event.target.value);

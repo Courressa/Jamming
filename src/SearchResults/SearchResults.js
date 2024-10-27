@@ -13,7 +13,7 @@ function SearchResults(props) {
     const [album , setAlbum] = useState("");
     const [image , setImage] = useState("");
     const [popularity , setPopularity] = useState("None");
-    const [songLink , setSongLink] = useState("");
+    const [songLink , setSongLink] = useState("https://open.spotify.com");
     const [preview, setPreview] = useState("")
 
     //Getting and sending search results
@@ -103,14 +103,23 @@ function SearchResults(props) {
     let changePlusAfterSpotifyClick = [];
 
     const [ping, setPing] = useState(false);
-    const [confirmPlaylistNameForClick, setConfirmPlaylistNameForClick] = useState("");
 
     const handlePlaylistClick = () => {
-        if (saveSong === "" || confirmPlaylistNameForClick === "") {
+        if (saveSong === "") {
             setPing(false);
             alert ("Please add a song to your playlist and name your playlist before saving to Spotify.");
         } else {
             setPing(true);
+        }
+    };
+    let collectNamePing = ping;
+    //Sends Playlist Name Info To App.js
+    const sendPlaylistName = (collectedName) => {
+        props.collectPlaylistName(collectedName);
+        if (ping === true && !collectedName) {
+            setPing(false);
+            alert ("Please add a song to your playlist and name your playlist before saving to Spotify.");
+        } else if (ping === true && collectedName) {
             saveSong.map(song => (
                 changePlusAfterSpotifyClick.push(song.id),
                 playlistURI.push(`spotify:track:${song.id}`)
@@ -120,12 +129,7 @@ function SearchResults(props) {
             props.collectPlaylistSongs(playlistURI);
             setSaveSong("");
         }
-    };
-    let collectNamePing = ping;
-    //Sends Playlist Name Info To App.js
-    const sendPlaylistName = (collectedName) => {
-        props.collectPlaylistName(collectedName);
-        setConfirmPlaylistNameForClick(collectedName);
+
         setPing(false);
     }
 
