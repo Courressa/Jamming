@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# <p align="center">🎵Jammming🎵</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">Jammming is a React JS web application that saves users created playlist to their Spotify account. It will prompt the user to sign in to their spotify account and grant access in order to do so when they first start the app.</p>
 
-## Available Scripts
+<br>
+<br>
+<br>
 
-In the project directory, you can run:
+## <p align="center">✨Features✨</p>
 
-### `npm start`
+<br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<p align="center">Jammming will display a list of songs based on what the user searches. The user will then have the option to add the song to their playlist that they are creating with the plus button or they may select an arrow to see more information about the selected song. Under the more information section they will be able to view the album cover, album title, artist(s), popularity based on scoring provided from Spotify, a preview of the song if available as well as the option to listen to the full song on Spotify. Users can choose to remove a song either with the minus icon or the X icon. Once they are satisfied with the songs they have added to their playlist they would add a title to the playlist and select "Save to Spotify" for their playlist to be sent to their Spotify account.</p>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![Homepage for Project Jammming](https://github.com/user-attachments/assets/e3b6c31b-8e0a-49c9-a5ad-419c94842d6f)
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br>
+<br>
 
-### `npm run build`
+## <p align="center">🛠️Built With🛠️</p>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<p align="center">This web application was created using the create-react-app command in Git Bash. The modification of it was then continued in Visual Studio Code by using JSX, HTML, CSS and JavaScript.</p>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<p align="center"> <img src="https://github.com/user-attachments/assets/6bad65d2-de1b-4217-acab-2a6350f50be5" alt="Git Bash icon" style="height: 25px;"> <img src="https://github.com/user-attachments/assets/dc6f28f4-b764-4114-a650-defd419bcca4" alt="React icon" style="height: 25px;"> <img src="https://github.com/Courressa/SunCon/assets/169003750/2aba3cad-81db-4cc2-978a-a88c0afbcce1" alt="Visual Studio Code icon" style="height: 25px;">  <img src="https://github.com/Courressa/SunCon/assets/169003750/bb3f98e3-b54c-40cf-8d6d-8031ede53493" alt="HTML icon" style="height: 25px;">  <img src="https://github.com/Courressa/SunCon/assets/169003750/757fb538-1479-422a-9554-285a87bf4e4f" alt="CCS icon" style="height: 25px;"> 
+<img src="https://github.com/user-attachments/assets/0919a98a-1ab5-4e62-a4cf-822d81f2593c" alt="JavaScript icon" style="height: 25px;">
 
-### `npm run eject`
+</p>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<br>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<p align="center">The responsiveness of the web application was tested with the Chrome DevTools on the listed devices below:</p>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<div align="center">
+  <table border="0">
+     <tr>
+        <td>iPhone SE</td>
+        <td>iPhone XR</td>
+     </tr>
+      <tr>
+        <td>iPhone 12 Pro</td>
+        <td>iPhone 14 Pro Max</td>
+     </tr>
+      <tr>
+        <td>Pixel 7</td>
+        <td>Samsung Galaxy S8+</td>
+     </tr>
+      <tr>
+        <td>Samsung Galaxy S20 Ultra</td>
+        <td>iPad Mini</td>
+     </tr>
+      <tr>
+        <td>iPad Air</td>
+        <td>iPad Pro</td>
+     </tr>
+      <tr>
+        <td>Surface Pro 7</td>
+        <td>Surface Duo</td>
+     </tr>
+      <tr>
+        <td>Galaxy Z Fold 5</td>
+        <td>Asus Zenbook Fold</td>
+     </tr>
+      <tr>
+        <td>Samsung Galaxy A51/71</td>
+        <td>Nest Hub</td>
+     </tr>
+      <tr>
+        <td>Nest Hub Max</td>
+        <td></td>
+     </tr>
+  </table>
+</div>
+<br>
+<br>
+<p align="center">The background image is by <a href="https://pixabay.com/users/placidplace-25572496/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7849579">Peace,love,happiness</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7849579">Pixabay</a></p> 
