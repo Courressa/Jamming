@@ -15,7 +15,7 @@ beforeAll(() => {
 describe('Search Section', () => {
     it('Displays search bar and button', () => {
         const spotifySearchResults = [{
-            id: 12345,
+            id: "12345",
             name: "Leave Your Mark",
             artists: [{name: "Nyx"}, {name: "Symphony"}],
             album: {
@@ -43,7 +43,7 @@ describe('Search Section', () => {
     
     it('Displays user text that was typed to search', async () => {
         const spotifySearchResults = [{
-            id: 12345,
+            id: "12345",
             name: "Leave Your Mark",
             artists: [{name: "Nyx"}, {name: "Symphony"}],
             album: {
@@ -72,7 +72,7 @@ describe('Search Section', () => {
 describe('Tracklist Section - list of songs search results', () => {
     it('Displays song title, artists, plus button and more info button on tracklist', async () => {
         const spotifySearchResults = [{
-            id: 12345,
+            id: "12345",
             name: "Leave Your Mark",
             artists: [{name: "Nyx"}, {name: "Symphony"}],
             album: {
@@ -103,7 +103,7 @@ describe('Tracklist Section - list of songs search results', () => {
     
     it('Minus sign should not show as yet', async () => {
         const spotifySearchResults = [{
-            id: 12345,
+            id: "12345",
             name: "Leave Your Mark",
             artists: [{name: "Nyx"}, {name: "Symphony"}],
             album: {
@@ -135,7 +135,7 @@ describe('Tracklist Section - list of songs search results', () => {
     
     it('Changes to minus icon when added to playlist', async () => {
         const spotifySearchResults = [{
-            id: 12345,
+            id: "12345",
             name: "Leave Your Mark",
             artists: [{name: "Nyx"}, {name: "Symphony"}],
             album: {
@@ -168,7 +168,7 @@ describe('Tracklist Section - list of songs search results', () => {
     
     it('Changes to plus icon when clicking on minus to remove from playlist', async () => {
         const spotifySearchResults = [{
-            id: 12345,
+            id: "12345",
             name: "Leave Your Mark",
             artists: [{name: "Nyx"}, {name: "Symphony"}],
             album: {
@@ -202,7 +202,7 @@ describe('Tracklist Section - list of songs search results', () => {
 describe('More Information Section', () => {
     it('Displays song information after clicking more info button', async () => {
         const spotifySearchResults = [{
-            id: 12345,
+            id: "12345",
             name: "Leave Your Mark",
             artists: [{name: "Nyx"}, {name: "Symphony"}],
             album: {
@@ -246,7 +246,7 @@ describe('More Information Section', () => {
     
     it('Opens Spotify in new window to listen to selected song when button is clicked', async () => {
         const spotifySearchResults = [{
-            id: 12345,
+            id: "12345",
             name: "Leave Your Mark",
             artists: [{name: "Nyx"}, {name: "Symphony"}],
             album: {
@@ -285,7 +285,7 @@ describe('More Information Section', () => {
 describe('Playlist Section', () => {
     it ('Displays playlist textbox and send to spotify button', () => {
         const spotifySearchResults = [{
-            id: 12345,
+            id: "12345",
             name: "Leave Your Mark",
             artists: [{name: "Nyx"}, {name: "Symphony"}],
             album: {
@@ -314,7 +314,7 @@ describe('Playlist Section', () => {
     
     it ('Displays user text that was typed', async () => {
         const spotifySearchResults = [{
-            id: 12345,
+            id: "12345",
             name: "Leave Your Mark",
             artists: [{name: "Nyx"}, {name: "Symphony"}],
             album: {
@@ -341,7 +341,7 @@ describe('Playlist Section', () => {
     
     it ('Displays song title, artist(s) and remove button after clicking plus button to add to playlist', async () => {
         const spotifySearchResults = [{
-            id: 12345,
+            id: "12345",
             name: "Leave Your Mark",
             artists: [{name: "Nyx"}, {name: "Symphony"}],
             album: {
@@ -376,7 +376,7 @@ describe('Playlist Section', () => {
     
     it('Removes song from playlist when X is clicked', async () => {
         const spotifySearchResults = [{
-            id: 12345,
+            id: "12345",
             name: "Leave Your Mark",
             artists: [{name: "Nyx"}, {name: "Symphony"}],
             album: {
@@ -420,7 +420,7 @@ describe('Playlist Section', () => {
     
     it('Removes song from playlist when minus is clicked', async () => {
         const spotifySearchResults = [{
-            id: 12345,
+            id: "12345",
             name: "Leave Your Mark",
             artists: [{name: "Nyx"}, {name: "Symphony"}],
             album: {
@@ -465,7 +465,7 @@ describe('Playlist Section', () => {
     
     it('Sends selected songs to Spotify account with title when Send To Spotify is clicked', async () => {
         const spotifySearchResults = [{
-            id: 12345,
+            id: "12345",
             name: "Leave Your Mark",
             artists: [{name: "Nyx"}, {name: "Symphony"}],
             album: {

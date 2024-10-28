@@ -86,21 +86,21 @@ it('Displays search results after user clicks search', async () => {
 it('Sends selected songs and playlist title to spotify when save to spotify is clicked', async () => {
   //Setup mock data
   const mockProfileData = {
-    id: 'user123',
-    name: 'Test User',
+    id: "user123",
+    name: "Test User",
   };
 
   const mockSearchResults = {
     tracks: {
       items: [
         {
-          id: 12345,
+          id: "12345",
           name: "Leave Your Mark",
           artists: [{ name: "Nyx" }, { name: "Symphony" }],
           album: { name: "Aim" },
         },
         {
-          id: 67890,
+          id: "67890",
           name: "Something Good!",
           artists: [{ name: "Nyx" }],
           album: { name: "Reach For The Stars" },

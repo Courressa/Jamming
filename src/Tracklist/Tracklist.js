@@ -7,7 +7,7 @@ import "../Song&Icon Styles/ButtonIcons.css";
 function Tracklist(props) {
   const [minusPlus, setMinusPlus] = useState("add");
   const [ariaLabel, setAriaLabel] = useState("Add Song To Playlist");
-  const songlist = [props.songObject]
+  const songlist = [props.songObject];
 
   //Change to plus when removed from playlist section
   useEffect(() => {
