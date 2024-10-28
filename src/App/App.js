@@ -4,7 +4,7 @@ import { SearchResults } from '../SearchResults/SearchResults';
 
 
 function App() {
-  const appBaseURL = "http://localhost:3000";
+  const appBaseURL = "https://jammming-by-courressa-malcolm.netlify.app";
   const spotifyBaseRL= "https://api.spotify.com/v1";
   const clientId = 'd8cee3074f8840db821ef5d5b9df1337';
   const redirect_uri = `${appBaseURL}/callback`;
