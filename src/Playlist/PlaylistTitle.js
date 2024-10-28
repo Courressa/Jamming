@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import styles from "../Song&Icon Styles/List.module.css";
 
-function PlaylistTitle(props) {
+function PlaylistTitle({sendCollectPing, collectName}) {
     const [title, setTitle] = useState("");
     const handleTitleChange = (event) => {
         setTitle(event.target.value);
     };
     
     useEffect(() => {
-        if (props.sendCollectPing) {
-            props.collectName(title);
+        if (sendCollectPing) {
+            collectName(title);
         }
-    }, [props.sendCollectPing]);
+    }, [sendCollectPing]);
 
     return (
         <div>
