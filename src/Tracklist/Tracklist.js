@@ -16,6 +16,8 @@ function Tracklist(props) {
         setMinusPlus("add");
       }
     })
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.sendEffectCount]);
 
   //Change to plus when all songs are sent to Spotify from playlist section
@@ -27,6 +29,8 @@ function Tracklist(props) {
         };
       }
     })
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.collectID]);
   
   const handleToggle = (event) => {

@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import styles from "../Song&Icon Styles/List.module.css";
 
-function PlaylistTitle({sendCollectPing, collectName}) {
+function PlaylistTitle(props) {
     const [title, setTitle] = useState("");
     const handleTitleChange = (event) => {
         setTitle(event.target.value);
     };
     
     useEffect(() => {
-        if (sendCollectPing) {
-            collectName(title);
+        if (props.sendCollectPing) {
+            props.collectName(title);
         }
-    }, [sendCollectPing]);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.sendCollectPing]);
 
     return (
         <div>

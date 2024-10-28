@@ -86,6 +86,8 @@ function App() {
 
     getAccessToken();
     getProfileID();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //Send Search Results to Spotify
@@ -124,6 +126,7 @@ function App() {
 
     getSearch();
     
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userSearchResults]);
 
   //Creates Playlist on User's Spotify
@@ -158,10 +161,11 @@ function App() {
           console.log(error);
         }
       }
-      
     };
 
     sendPlaylistName();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playlistName]);
 
   const [playlistSongs, setPlaylistSongs] = useState([]);
@@ -198,6 +202,8 @@ function App() {
     };
 
     sendPlaylistSongs();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [createdPlaylistID]);
   
   return (
