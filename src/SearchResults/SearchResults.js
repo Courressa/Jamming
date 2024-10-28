@@ -119,10 +119,10 @@ function SearchResults(props) {
             setPing(false);
             alert ("Please add a song to your playlist and name your playlist before saving to Spotify.");
         } else if (ping === true && collectedName) {
-            saveSong.map(song => (
-                changePlusAfterSpotifyClick.push(song.id),
+            saveSong.forEach(song => {
+                changePlusAfterSpotifyClick.push(song.id)
                 playlistURI.push(`spotify:track:${song.id}`)
-            ));
+            });
             
             setPushID(changePlusAfterSpotifyClick);
             props.collectPlaylistSongs(playlistURI);
