@@ -4,7 +4,7 @@ import styles from "./Track.module.css";
 function Track(props) {
     let showImage;
     if (props.songAlbum) {
-        showImage = <img src={props.songImage} alt={`${props.songAlbum}'s Album Image`} aria-label={`${props.songAlbum} Album`}/>;
+        showImage = <img src={props.songImage} alt={`${props.songAlbum} Album`} />;
     }
 
     const handleListenOnSpotify = () => {

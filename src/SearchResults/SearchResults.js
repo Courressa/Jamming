@@ -29,7 +29,6 @@ function SearchResults(props) {
     const handleMoreInfoClick = (moreInfoID) => {
         let trackID = moreInfoID;
         let imageIndex = 0;
-        console.log('trackID', typeof trackID);
         
         results.map((item) => {
             const displaysArtists = (
@@ -41,7 +40,7 @@ function SearchResults(props) {
             const displayImage = (
                 item.album.images.map(image => image.url)
             );
-            console.log('inside trackID', typeof item.id);
+
             if (trackID === item.id) {
                 setSongName(item.name);
                 setArtist(displaysArtists);
@@ -61,9 +60,8 @@ function SearchResults(props) {
     //Adding or removing song from playlist
     const handleAddRemoveClick = (plusMinusID) => {
         let songID = plusMinusID;
-        console.log('songID', typeof songID);
+        
         results.map((item) => {
-            console.log('inside songID', typeof item.id);
             if (songID === item.id) {
                 setSaveSong(prev => {
                     if (prev.includes(item)) {
