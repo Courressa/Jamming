@@ -152,9 +152,6 @@ it('Sends selected songs and playlist title to spotify when save to spotify is c
   const sendToSpotifyButton = screen.getByRole('button', {name: "Save To Spotify"});
   await userEvent.click(sendToSpotifyButton);
 
-  global.fetch.mock.calls.forEach((call, index) => {
-    console.log(`Fetch call ${index + 1}:`, call);
-  });
   await waitFor(() => {
     //Checks if playlist is created with entered title
     expect(global.fetch).toHaveBeenCalledWith(
