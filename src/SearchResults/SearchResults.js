@@ -30,7 +30,7 @@ function SearchResults(props) {
         let trackID = moreInfoID;
         let imageIndex = 0;
         
-        results.map((item) => {
+        results.forEach((item) => {
             const displaysArtists = (
                 item.artists.map((person, index) => (
                   (index ? ', ' : '') + person.name
@@ -61,7 +61,7 @@ function SearchResults(props) {
     const handleAddRemoveClick = (plusMinusID) => {
         let songID = plusMinusID;
         
-        results.map((item) => {
+        results.forEach((item) => {
             if (songID === item.id) {
                 setSaveSong(prev => {
                     if (prev.includes(item)) {

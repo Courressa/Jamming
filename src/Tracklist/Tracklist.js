@@ -11,7 +11,7 @@ function Tracklist(props) {
 
   //Change to plus when removed from playlist section
   useEffect(() => {
-    songlist.map((song) => {
+    songlist.forEach((song) => {
       if (song.id === props.collectID) {
         setMinusPlus("add");
       }
@@ -22,7 +22,7 @@ function Tracklist(props) {
 
   //Change to plus when all songs are sent to Spotify from playlist section
   useEffect(() => {
-    songlist.map((song) => {
+    songlist.forEach((song) => {
       for (let i = 0; i < props.collectID.length; i++) {
         if (song.id === props.collectID[i]) {
           setMinusPlus("add");
