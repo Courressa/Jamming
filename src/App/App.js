@@ -79,6 +79,8 @@ function App() {
           setUserID(profileID);
   
           return profileID;
+        } else if (!response.ok) {
+          setFoundError(true);
         }
       } catch (error) {
         setFoundError(true);
@@ -118,6 +120,8 @@ function App() {
             setSpotifySearchResults(tracks);
             
             return tracks;
+          } else if (!response.ok) {
+            setFoundError(true);
           }
         } catch (error) {
           setFoundError(true);
@@ -159,6 +163,8 @@ function App() {
             setcreatedPlaylistID(playlistID);
             
             return playlistID;
+          } else if (!response.ok) {
+            setFoundError(true);
           }
         } catch (error) {
           setFoundError(true);
@@ -198,6 +204,8 @@ function App() {
             setcreatedPlaylistID("");
   
             return playlistID
+          } else if (!response.ok) {
+            setFoundError(true);
           }
         } catch (error) {
           setFoundError(true);
@@ -212,7 +220,7 @@ function App() {
   }, [createdPlaylistID]);
   
   console.log("Error state", foundError);
-  
+
   return (
     <div className="App">
       <header className="App-header">
