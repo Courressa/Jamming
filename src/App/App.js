@@ -4,59 +4,60 @@ import { SearchResults } from '../SearchResults/SearchResults';
 
 
 function App() {
-  const appBaseURL = "https://jammming-by-courressa-malcolm.netlify.app";
+  const appBaseURL = "http://localhost:3000";
   const spotifyBaseRL= "https://api.spotify.com/v1";
-  const clientId = 'd8cee3074f8840db821ef5d5b9df1337';
-  const redirect_uri = `${appBaseURL}`;
+  const clientId = '69723d5add8b41c089d5dbf258a0bc45';
+  const redirect_uri = `${appBaseURL}/callback`;
   const params = new URLSearchParams(window.location.hash);
   const accessToken = params.get("#access_token");
   const tokenExpirationTime = params.get("expires_in");
   const timeOut = tokenExpirationTime*1000;
   
   const [userID, setUserID] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [foundError, setFoundError] = useState(false);
+
+  async function redirectToAuthCodeFlow(clientId) {
+    //Redirects to Spotify authorization page
+    const generateRandomString = (length) => {
+      let text = '';
+      let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@$%^*+~;.,() ';
+
+      for (let i = 0; i < length; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+      }
+      return text;
+    };
+      
+    const state = await generateRandomString(16);
+    localStorage.setItem("stateKey", state);
+    let scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
+    
+    let url = 'https://accounts.spotify.com/authorize';
+    url += '?response_type=token';
+    url += '&client_id=' + encodeURIComponent(clientId);
+    url += '&scope=' + encodeURIComponent(scope);
+    url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
+    url += '&state=' + encodeURIComponent(state);
+    
+    document.location.assign(url);
+  };
 
   useEffect(() => {
     //Retrieves User's Access Token From Spotify
     async function getAccessToken() {
       try {
         if (!accessToken) {
-          alert (
-            'Jammming sends your created playlist to Spotify. Login to your spotify account to provide access.'
-          );
-          redirectToAuthCodeFlow(clientId);
+          setIsLoading(true);
+          
         } else {
+          setIsLoading(false);
           setTimeout(() => {
             document.location = appBaseURL;
           }, timeOut );
         };
-        
-        async function redirectToAuthCodeFlow(clientId) {
-            //Redirects to Spotify authorization page
-          const generateRandomString = (length) => {
-            let text = '';
-            let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@$%^*+~;.,() ';
-        
-            for (let i = 0; i < length; i++) {
-              text += possible.charAt(Math.floor(Math.random() * possible.length));
-            }
-            return text;
-          };
-            
-          const state = await generateRandomString(16);
-          localStorage.setItem("stateKey", state);
-          let scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
-          
-          let url = 'https://accounts.spotify.com/authorize';
-          url += '?response_type=token';
-          url += '&client_id=' + encodeURIComponent(clientId);
-          url += '&scope=' + encodeURIComponent(scope);
-          url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
-          url += '&state=' + encodeURIComponent(state);
-          
-          document.location.assign(url);
-        };
-        
       } catch (error) {
+        setFoundError(true);
         console.log(error);
       }
     };
@@ -80,6 +81,7 @@ function App() {
           return profileID;
         }
       } catch (error) {
+        setFoundError(true);
         console.log(error);
       }
     };
@@ -118,6 +120,7 @@ function App() {
             return tracks;
           }
         } catch (error) {
+          setFoundError(true);
           console.log(error);
         }
       }
@@ -158,6 +161,7 @@ function App() {
             return playlistID;
           }
         } catch (error) {
+          setFoundError(true);
           console.log(error);
         }
       }
@@ -196,6 +200,7 @@ function App() {
             return playlistID
           }
         } catch (error) {
+          setFoundError(true);
           console.log(error);
         }
       }
@@ -206,19 +211,62 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [createdPlaylistID]);
   
+  console.log("Error state", foundError);
+  
   return (
     <div className="App">
       <header className="App-header">
         <h1>Jammming</h1>
       </header>
-      <main>
-        <SearchResults
-          collectSearch={collectUserSearch}
-          sendSearch={spotifySearchResults}
-          collectPlaylistName={retrieveName}
-          collectPlaylistSongs={retrieveSongs}
-        />
-      </main>
+      {isLoading ? (
+        <div className='loadingBackground'>
+          <section className='loadingPage'>
+            <h2>Loading Jammming...</h2>
+            <h3>
+              Jammming sends your created playlist to Spotify.
+              Login to your spotify account to provide access and use Jammming features.
+              <br />
+              <br />
+              Select 'OK' to be redirected to Spotify.
+            </h3>
+            <button onClick={() => {
+              alert (
+                'You are being redirected to Spotify from Jammming.'
+              );
+              redirectToAuthCodeFlow(clientId);
+            }}>
+              OK
+            </button>
+          </section>
+        </div>
+        ) : (
+          <main>
+            {foundError ? (
+              <div className='errorBackground'>
+              <section className='errorPage'>
+                <h2>Oops! We Ran Into An Error :(</h2>
+                <h3>
+                  There was an issue with processing your request.
+                  <br />
+                  <br />
+                  Please refresh the page or try again later.
+                </h3>
+                <button onClick={() => {setFoundError(false);}}>
+                  OK
+                </button>
+              </section>
+            </div>
+            ) : (
+            <SearchResults
+              collectSearch={collectUserSearch}
+              sendSearch={spotifySearchResults}
+              collectPlaylistName={retrieveName}
+              collectPlaylistSongs={retrieveSongs}
+            />)}
+            
+          </main>
+        )
+    }
     </div>
   );
 }

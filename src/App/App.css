@@ -29,3 +29,69 @@ body {
   padding-bottom: 1rem;
   text-shadow: 0.5rem 0.5rem 0.3rem black;
 }
+
+/*Loading Page*/
+.loadingBackground {
+  display: flex;
+  justify-content: center;
+  z-index: 8;
+  background-color: rgba(12, 17, 80, 0.877);
+  height: 100vh;
+  width: 100%;
+}
+
+
+.loadingPage {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  height: 70%;
+  background-color: rgba(2, 4, 31, 0.596);
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 5rem;
+  border-radius: 3rem;
+}
+
+.loadingPage h2, .loadingPage h3 {
+  text-align: center;
+  padding: 0rem 6rem;
+  color: rgb(194, 214, 231);
+}
+
+.loadingPage button, .errorPage button {
+  background-color: rgb(14, 160, 14);
+  color: #ffffff;
+  border-radius: 25%;
+  padding: 1rem;
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/*Error Page*/
+.errorBackground {
+  display: flex;
+  justify-content: center;
+  z-index: 10000;
+  background-color: rgba(55, 12, 80, 0.877);
+  height: 100vh;
+  width: 100%;
+}
+.errorPage {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  height: 70%;
+  background-color: rgba(16, 2, 31, 0.596);
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 5rem;
+  border-radius: 3rem;
+}
+
+.errorPage h2, .errorPage h3 {
+  text-align: center;
+  padding: 0rem 6rem;
+  color: rgb(195, 194, 231);
+}
