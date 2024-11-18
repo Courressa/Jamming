@@ -4,10 +4,10 @@ import { SearchResults } from '../SearchResults/SearchResults';
 
 
 function App() {
-  const appBaseURL = "http://localhost:3000";
+  const appBaseURL = "https://jammming-by-courressa-malcolm.netlify.app";
   const spotifyBaseRL= "https://api.spotify.com/v1";
-  const clientId = '69723d5add8b41c089d5dbf258a0bc45';
-  const redirect_uri = `${appBaseURL}/callback`;
+  const clientId = 'd8cee3074f8840db821ef5d5b9df1337';
+  const redirect_uri = `${appBaseURL}`;
   const params = new URLSearchParams(window.location.hash);
   const accessToken = params.get("#access_token");
   const tokenExpirationTime = params.get("expires_in");
