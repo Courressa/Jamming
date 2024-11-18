@@ -49,7 +49,6 @@ function App() {
       try {
         if (!accessToken) {
           setIsLoading(true);
-          
         } else {
           setIsLoading(false);
           setTimeout(() => {
@@ -83,7 +82,6 @@ function App() {
           setFoundError(true);
         }
       } catch (error) {
-        setFoundError(true);
         console.log(error);
       }
     };
@@ -124,7 +122,6 @@ function App() {
             setFoundError(true);
           }
         } catch (error) {
-          setFoundError(true);
           console.log(error);
         }
       }
@@ -167,7 +164,6 @@ function App() {
             setFoundError(true);
           }
         } catch (error) {
-          setFoundError(true);
           console.log(error);
         }
       }
@@ -208,7 +204,6 @@ function App() {
             setFoundError(true);
           }
         } catch (error) {
-          setFoundError(true);
           console.log(error);
         }
       }
@@ -218,8 +213,6 @@ function App() {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [createdPlaylistID]);
-  
-  console.log("Error state", foundError);
 
   return (
     <div className="App">
