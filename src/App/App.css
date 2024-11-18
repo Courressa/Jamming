@@ -95,3 +95,9 @@ body {
   padding: 0rem 6rem;
   color: rgb(195, 194, 231);
 }
+
+@media only screen and (max-width: 450px) {
+  .loadingPage h2, .loadingPage h3, .errorPage h2, .errorPage h3 {
+    padding: 0rem 2rem;
+  }
+}
