@@ -175,7 +175,8 @@ it('Sends selected songs and playlist title to spotify when save to spotify is c
           Authorization: expect.stringContaining('Bearer'),
         },
         body: JSON.stringify({
-          name: 'My Chill Playlist'
+          name: 'My Chill Playlist',
+          public: false
         }),
       })
     );

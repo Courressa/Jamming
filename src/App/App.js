@@ -144,7 +144,7 @@ function App() {
     async function sendPlaylistName() {
       const playlistNameEndpoint = `/users/${userID}/playlists`;
       const urlToFetch = `${spotifyBaseRL}${playlistNameEndpoint}`;
-      const bodyToSend = {name: playlistName}
+      const bodyToSend = {name: playlistName, public: false}
       
       if (userID !== "") {
         try {
